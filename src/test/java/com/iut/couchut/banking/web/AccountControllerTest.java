@@ -91,10 +91,10 @@ public class AccountControllerTest extends WebAppTest{
     @Test
     public void should_Create_OneTodo_Nominal() {
         final String accountName = "NewDesc";
-        final long accountBalance= 100;
+        final String accountBalance= "100";
         final AccountType accountType = AccountType.PEL;
 
-        Account accountToCreate = newAccount().withAll(accountName,accountBalance,accountType).build();
+        Account accountToCreate = newAccount().withAll(accountName,accountBalance).build();
         AccountDTO accountDTO = new AccountDTO(accountToCreate);
 
         given()
@@ -108,11 +108,10 @@ public class AccountControllerTest extends WebAppTest{
                 .statusCode(CREATED.value())
                 .body("account.id", notNullValue())
                 .body("account.name", is(accountName))
-                .body("account.balance", is(accountBalance))
-                .body("account.type", is(accountType));
+                .body("account.balance", is(accountBalance));
 
         // And then assert what has been done in db
-        Account createdAccount = accountRepository.findByName(accountName, accountBalance);
+        Account createdAccount = accountRepository.findByName(accountName);
 
         assertThat(createdAccount, notNullValue());
         assertThat(createdAccount.getId(), notNullValue());
@@ -140,10 +139,10 @@ public class AccountControllerTest extends WebAppTest{
     @Test
     public void should_Update_Todo_Nominal() {
         final String updateName = "NewDesc";
-        final long updateBalance= 100;
+        final String updateBalance= "100";
         final AccountType updateType = AccountType.PEL;
 
-        AccountDTO accountDTO = new AccountDTO(newAccount().withAll(updateName, updateBalance,updateType).build());
+        AccountDTO accountDTO = new AccountDTO(newAccount().withAll(updateName, updateBalance).build());
 
         given()
                 .header("Content-Type", "application/json")
@@ -159,7 +158,7 @@ public class AccountControllerTest extends WebAppTest{
                 .body("account.balance", is(updateBalance))
                 .body("account.type", is(updateType));
 
-        Account updatedTodo = accountRepository.findByName(updateName, updateBalance);
+        Account updatedTodo = accountRepository.findByName(updateName);
 
         assertThat(updatedTodo, notNullValue());
         assertThat(updatedTodo.getId(), is(Long.valueOf(firstAccountId)));
@@ -170,10 +169,10 @@ public class AccountControllerTest extends WebAppTest{
     public void shouldNot_Update_Todo_WhenTodoNotFound() {
         Long unknownTodoId = 100L;
         final String updateName = "NewDesc";
-        final long updateBalance= 100;
+        final String updateBalance= "100";
         final AccountType updateType = AccountType.PEL;
 
-        AccountDTO accountDTO = new AccountDTO(newAccount().withAll(updateName,updateBalance,updateType).build());
+        AccountDTO accountDTO = new AccountDTO(newAccount().withAll(updateName,updateBalance).build());
 
         given()
                 .header("Content-Type", "application/json")

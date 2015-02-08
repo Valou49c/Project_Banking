@@ -19,16 +19,18 @@ public class Account implements Serializable {
     @GeneratedValue
     private long id;
 
+
+
     @Column(nullable = false)
     private String name;
 
-    private long balance;
+    private String balance;
     private AccountType type;
     private AccountOperations operations;
     private Customer customer;
 
 
-    public Account(long id, String name, long balance, AccountType type, AccountOperations operations, Customer customer) {
+    public Account(long id, String name, String balance, AccountType type, AccountOperations operations, Customer customer) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -36,6 +38,7 @@ public class Account implements Serializable {
         this.operations = operations;
         this.customer = customer;
     }
+
 
 
     public static Builder newAccount() {
@@ -50,15 +53,15 @@ public class Account implements Serializable {
 
     public static class Builder {
         private String name;
-        private long balance;
+        private String balance;
         private AccountType type;
         private AccountOperations operations;
         private Customer customer;
 
-        public Builder withAll(String name, long balance, AccountType type) {
+        public Builder withAll(String name, String balance) {
             this.name = name;
             this.balance = balance;
-            this.type = type;
+//            this.type = type;
 //            this.operations = operations;
 //            this.customer = customer;
 
@@ -100,11 +103,11 @@ public class Account implements Serializable {
         this.name = name;
     }
 
-    public long getBalance() {
+    public String getBalance() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(String balance) {
         this.balance = balance;
     }
 
