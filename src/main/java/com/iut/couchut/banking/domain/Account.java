@@ -55,12 +55,14 @@ public class Account implements Serializable {
         private AccountOperations operations;
         private Customer customer;
 
-        public Builder(String name, long balance, AccountType type, AccountOperations operations, Customer customer) {
+        public Builder withAll(String name, long balance, AccountType type) {
             this.name = name;
             this.balance = balance;
             this.type = type;
-            this.operations = operations;
-            this.customer = customer;
+//            this.operations = operations;
+//            this.customer = customer;
+
+            return this;
         }
         // Constructor
 
