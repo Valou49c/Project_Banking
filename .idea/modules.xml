@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/banking.dris.tassi.lebouche.couchut.iml" filepath="$PROJECT_DIR$/banking.dris.tassi.lebouche.couchut.iml" />
+      <module fileurl="file://$PROJECT_DIR$/couchut.banking.iml" filepath="$PROJECT_DIR$/couchut.banking.iml" />
     </modules>
   </component>
 </project>
