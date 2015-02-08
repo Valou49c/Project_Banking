@@ -6,13 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Valentin on 08/02/2015.
  */
 @Entity
-public class Account {
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue
@@ -22,7 +23,19 @@ public class Account {
     private String name;
 
     private long balance;
+    private AccountType type;
+    private AccountOperations operations;
+    private Customer customer;
 
+
+    public Account(long id, String name, long balance, AccountType type, AccountOperations operations, Customer customer) {
+        this.id = id;
+        this.name = name;
+        this.balance = balance;
+        this.type = type;
+        this.operations = operations;
+        this.customer = customer;
+    }
 
 
     public static Builder newAccount() {
@@ -38,17 +51,22 @@ public class Account {
     public static class Builder {
         private String name;
         private long balance;
+        private AccountType type;
+        private AccountOperations operations;
+        private Customer customer;
 
-
+        public Builder(String name, long balance, AccountType type, AccountOperations operations, Customer customer) {
+            this.name = name;
+            this.balance = balance;
+            this.type = type;
+            this.operations = operations;
+            this.customer = customer;
+        }
         // Constructor
 
         public Builder() {
         }
 
-        public Builder withAll(String name) {
-            this.name = name;
-            return this;
-        }
 
         public Account build() {
             return new Account(this);

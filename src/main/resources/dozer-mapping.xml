@@ -12,4 +12,12 @@
             <b>account</b>
         </field>
     </mapping>
+    <mapping wildcard="false">
+        <class-a>com.iut.couchut.banking.domain.Customer</class-a>
+        <class-b>com.iut.couchut.banking.web.dto.CustomerDTO</class-b>
+        <field>
+            <a>this</a>
+            <b>customer</b>
+        </field>
+    </mapping>
 </mappings>
