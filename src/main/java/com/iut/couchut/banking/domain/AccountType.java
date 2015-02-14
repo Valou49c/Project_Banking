@@ -8,5 +8,6 @@ import javax.persistence.Enumerated;
 
 public enum AccountType {
 
-    PEL,Courant;
+    PEL,
+    Courant
 }
